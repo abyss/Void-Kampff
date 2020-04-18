@@ -5,7 +5,7 @@ function setTitle(title) {
     process.stdout.write(`\u001B]0;${title}\u0007`);
 }
 
-setTitle(`voidBot ${bot.config.version}`);
+setTitle(`Voight-Kampff ${bot.config.version}`);
 
 process.on('unhandledRejection', err => {
     const errorMsg = (err.stack || err || '').toString();
@@ -26,8 +26,6 @@ const gracefulExit = () => {
 
 process.on('SIGINT', gracefulExit);
 process.on('SIGTERM', gracefulExit);
-
-// bot.login = () => Promise.resolve();
 
 bot.client.login(process.env.TOKEN).catch((err) => {
     console.error('Login Error', err);
