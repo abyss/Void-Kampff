@@ -1,0 +1,57 @@
+{
+    "small_talk": {
+        "full_name": "Small Talk",
+
+        "intro": "In a moment, I'm going to ask you some questions about __NORMAL, EVERYDAY THINGS__. These will require you to share superficial details about your life, and make small talk about them. Answer honestly, if you are a human, you have nothing to fear.",
+
+        "prompts": [
+            {
+                "requirement": "Share a short-term plan or goal",
+                "examples": [
+                    "What are you doing this weekend?",
+                    "How will tomorrow be different from today?"
+                ]
+            },
+            {
+                "requirement": "Talk about something they do regularly",
+                "examples": [
+                    "What do you do for a living?",
+                    "What's your favorite hobby?"
+                ]
+            },
+            {
+                "requirement": "Share some information about their personal background",
+                "examples": [
+                    "Where did you grow up?",
+                    "How many siblings do you have?"
+                ]
+            }
+        ],
+
+        "prompts_while": [
+            {
+                "requirement": "Share their feelings about something they already mentioned",
+                "examples": [
+                    "How does that make you feel?",
+                    "What's your favorite thing about that?"
+                ]
+            },
+            {
+                "requirement": "Explain how something they mentioned affects other people in their life",
+                "examples": [
+                    "How does your mother feel about that?",
+                    "How does your boss feel about that?"
+                ]
+            },
+            {
+               "requirement": "Share a complaint about something they already mentioned" ,
+               "examples": [
+                   "What makes that difficult?",
+                   "If you could change anything about what happened, what would you change?"
+               ]
+            }
+        ],
+
+        "roles": []
+    }
+}

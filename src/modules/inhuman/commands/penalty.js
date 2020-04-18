@@ -2,8 +2,7 @@ const { send } = require('../../../utils/chat');
 const bot = require('../../../bot');
 const { userColor } = require('../../../utils/colors');
 const { shuffleArray } = require('../../../utils/general');
-
-const RichEmbed = require('discord.js').RichEmbed;
+const { RichEmbed } = require('discord.js');
 
 exports.run = async (msg, args) => {
     let numPenalties;

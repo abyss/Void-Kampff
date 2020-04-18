@@ -13,4 +13,5 @@ data/*
 !data/.gitkeep
 !data/penalties.json
 !data/backgrounds.json
+!data/modules.json
 .env
