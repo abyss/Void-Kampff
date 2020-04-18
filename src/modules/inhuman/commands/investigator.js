@@ -1,14 +1,54 @@
-const { send } = require('../../../utils/chat');
-const bot = require('../../../bot');
 const { RichEmbed } = require('discord.js');
 const { stripIndents } = require('common-tags');
+const Fuse = require('fuse.js');
+
+const bot = require('../../../bot');
+const { modules } = require('../index');
+const { send } = require('../../../utils/chat');
 const { shuffleArray, asyncForEach } = require('../../../utils/general');
+
+const findModule = function (moduleText) {
+    const options = {
+        shouldSort: true,
+        threshhold: 0.3, // between 0 (perfect) to 1 (complete mismatch)
+        location: 0,
+        distance: 100,
+        maxPatternLength: 20,
+        minMatchCharLength: 1,
+        keys: [
+            'key',
+            'name',
+        ]
+    };
+
+    const fuse = new Fuse(modules, options);
+    const results = fuse.search(moduleText);
+    return results[0].item;
+};
+
 exports.run = async (msg, args) => {
     const taskKeyColor = 'fef65b'; // Yellow
     const promptColor = '1cbe6a'; // Green
     const whilePromptColor = '566cc3'; // Blue
 
-    const module = await bot.db.get('modules', 'small_talk');
+    if (args.length < 1) {
+        send(msg.channel, 'Please include a module to receive your prompts. You can run the `module` command to find out your options.');
+        return true;
+    }
+
+    const selectedModule = findModule(args.join(' '));
+
+    if (!selectedModule) {
+        send(msg.channel, 'Unknown module. You can run the `module` command to find out your options.');
+        return true;
+    }
+
+    const module = await bot.db.get('modules', selectedModule.key);
+
+    if (!module) {
+        send(msg.channel, 'Unknown module. You can run the `module` command to find out your options.');
+        return true;
+    }
 
     const taskKey = new RichEmbed()
         .setColor(taskKeyColor)

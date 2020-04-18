@@ -38,8 +38,8 @@ exports.run = async (msg) => {
             See more about the game at [https://robots.management/](https://robots.management/)
 
             This bot was created by [Abyss#0473](https://abyss.dev) to \
-            facilitate in these tests. You can find out more by running the \
-            help command.
+            facilitate these tests. You can find out more by running the \
+            \`help\` command.
         `);
 
     send(msg.channel, aboutMsg);
