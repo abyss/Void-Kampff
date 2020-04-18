@@ -33,6 +33,6 @@ exports.config = {
     botPermissions: [], // Permissions needed by the bot to use this command.
     defaultPermissions: [], // Default permissions to use this command by user
     location: 'ALL', // 'GUILD_ONLY', 'DM_ONLY', 'ALL'
-    description: 'Control custom set usage',
+    description: 'Control custom sets (background and penalty) usage',
     debug: false
 };
