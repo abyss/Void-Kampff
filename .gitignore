@@ -9,5 +9,8 @@ yarn-error.log*
 node_modules
 
 # Application
-data
+data/*
+!data/.gitkeep
+!data/penalties.json
+!data/backgrounds.json
 .env
