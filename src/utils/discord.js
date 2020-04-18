@@ -59,7 +59,7 @@ exports.findRole = function (guild, roleText) {
 
     const fuse = new Fuse(Array.from(guild.roles.values()), options);
     const results = fuse.search(roleText);
-    return results[0];
+    return results[0].item;
 };
 
 exports.findUser = function (guild, userText) {
@@ -84,7 +84,7 @@ exports.findUser = function (guild, userText) {
 
     const fuse = new Fuse(Array.from(guild.members.values()), options);
     const results = fuse.search(userText);
-    return results[0];
+    return results[0].item;
 };
 
 exports.serverStats = async function (guild) {
