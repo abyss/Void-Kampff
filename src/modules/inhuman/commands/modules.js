@@ -4,7 +4,7 @@ const { modules } = require('../index');
 const { userColor } = require('../../../utils/colors');
 const { RichEmbed } = require('discord.js');
 
-exports.run = async (msg, args) => {
+exports.run = async (msg) => {
     const moduleList = new RichEmbed()
         .setColor(userColor(bot.client.user, msg.guild))
         .setTitle('Together decide from these modules:');
