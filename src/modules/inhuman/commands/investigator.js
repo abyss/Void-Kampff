@@ -1,30 +1,10 @@
 const { RichEmbed } = require('discord.js');
 const { stripIndents } = require('common-tags');
-const Fuse = require('fuse.js');
 
 const bot = require('../../../bot');
-const { modules } = require('../index');
+const { findModule } = require('../index');
 const { send } = require('../../../utils/chat');
 const { shuffleArray, asyncForEach } = require('../../../utils/general');
-
-const findModule = function (moduleText) {
-    const options = {
-        shouldSort: true,
-        threshhold: 0.3, // between 0 (perfect) to 1 (complete mismatch)
-        location: 0,
-        distance: 100,
-        maxPatternLength: 20,
-        minMatchCharLength: 1,
-        keys: [
-            'key',
-            'name',
-        ]
-    };
-
-    const fuse = new Fuse(modules, options);
-    const results = fuse.search(moduleText);
-    return results[0].item;
-};
 
 exports.run = async (msg, args) => {
     const taskKeyColor = 'fef65b'; // Yellow
@@ -52,7 +32,7 @@ exports.run = async (msg, args) => {
 
     const taskKey = new RichEmbed()
         .setColor(taskKeyColor)
-        .setTitle(stripIndents`${module.full_name} Inteference Task Key (Read before you start the timer)`)
+        .setTitle(`${module.full_name} Inteference Task Key (Read before you start the timer)`)
         .setDescription(module.intro);
 
     await send(msg.author, taskKey);

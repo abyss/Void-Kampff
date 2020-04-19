@@ -35,7 +35,9 @@ exports.run = async (msg) => {
             **Inhuman Conditions** is designed by Tommy Maranges and Cory \
             O'Brien and illustrated by Mackenzie Schubert.
 
-            See more about the game at [https://robots.management/](https://robots.management/)
+            See more about the game at \
+            [https://robots.management/](https://robots.management/), and \
+            support the creators by buying a copy!
 
             This bot was created by [Abyss#0473](https://abyss.dev) to \
             facilitate these tests. You can find out more by running the \
