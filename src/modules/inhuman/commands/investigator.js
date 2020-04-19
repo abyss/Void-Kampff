@@ -1,6 +1,5 @@
 const { RichEmbed } = require('discord.js');
 
-const bot = require('../../../bot');
 const { findModule } = require('../index');
 const { send } = require('../../../utils/chat');
 const { shuffleArray, asyncForEach } = require('../../../utils/general');
@@ -15,14 +14,7 @@ exports.run = async (msg, args) => {
         return true;
     }
 
-    const selectedModule = findModule(args.join(' '));
-
-    if (!selectedModule) {
-        send(msg.channel, 'Unknown module. You can run the `module` command to find out your options.');
-        return true;
-    }
-
-    const module = await bot.db.get('modules', selectedModule.key);
+    const module = await findModule(args.join(' '));
 
     if (!module) {
         send(msg.channel, 'Unknown module. You can run the `module` command to find out your options.');
@@ -31,7 +23,7 @@ exports.run = async (msg, args) => {
 
     const taskKey = new RichEmbed()
         .setColor(taskKeyColor)
-        .setTitle(`${module.full_name} Inteference Task Key (Read before you start the timer)`)
+        .setTitle(`${module.name} Inteference Task Key (Read before you start the timer)`)
         .setDescription(module.intro);
 
     await send(msg.author, taskKey);

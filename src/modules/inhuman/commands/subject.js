@@ -1,7 +1,6 @@
 const { RichEmbed } = require('discord.js');
 const { stripIndents } = require('common-tags');
 
-const bot = require('../../../bot');
 const { findModule } = require('../index');
 const { send } = require('../../../utils/chat');
 
@@ -21,14 +20,7 @@ exports.run = async (msg, args) => {
         return true;
     }
 
-    const selectedModule = findModule(args.join(' '));
-
-    if (!selectedModule) {
-        send(msg.channel, 'Unknown module. You can run the `module` command to find out your options.');
-        return true;
-    }
-
-    const module = await bot.db.get('modules', selectedModule.key);
+    const module = await findModule(args.join(' '));
 
     if (!module) {
         send(msg.channel, 'Unknown module. You can run the `module` command to find out your options.');
@@ -36,13 +28,15 @@ exports.run = async (msg, args) => {
     }
 
     let roleCard = new RichEmbed();
-    if (Math.random() < chanceHuman) {
+    const roleIndex = Math.floor(Math.random() * module.robots.length);
+    let humanRoll = Math.random();
+
+    if (humanRoll < chanceHuman) {
         roleCard.setColor(humanColor)
             .setTitle('You are a Plain Human')
             .setDescription('**You have nothing to hide.**')
             .setThumbnail(humanIcon);
     } else {
-        const roleIndex = Math.floor(Math.random() * module.robots.length);
         const role = module.robots[roleIndex];
 
         if (role.type === 'passive') {
@@ -75,11 +69,14 @@ exports.run = async (msg, args) => {
             roleCard.setColor('FFFF00')
                 .setTitle('Error!')
                 .setDescription(`There was an error. Please inform Abyss! with \
-                Error information - module: ${args.join(' ')}, index ${roleIndex}`);
+                a screenshot of this error.
+
+                Error information - input: ${args.join(' ')}`);
 
         }
     }
 
+    roleCard.setFooter(`${module.name} Module - rng: ${humanRoll.toFixed(2)}.${roleIndex}`);
     await send(msg.author, roleCard);
 
     return true;

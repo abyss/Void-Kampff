@@ -7,9 +7,9 @@ exports.run = async (msg, args) => {
 
     if (args.length) {
         useCustom = parseBoolean(args[0]);
-        await bot.db.set(msg.author.id, 'inhuman.useCustom', useCustom);
+        await bot.db.set(msg.guild, `inhuman.players.${msg.author.id}.useCustom`, useCustom);
     } else {
-        useCustom = await bot.db.get(msg.author.id, 'inhuman.useCustom');
+        useCustom = await bot.db.get(msg.guild, `inhuman.players.${msg.author.id}.useCustom`);
     }
 
     if (useCustom) {
@@ -32,7 +32,7 @@ exports.config = {
     alias: ['usecustom'],
     botPermissions: [], // Permissions needed by the bot to use this command.
     defaultPermissions: [], // Default permissions to use this command by user
-    location: 'ALL', // 'GUILD_ONLY', 'DM_ONLY', 'ALL'
+    location: 'GUILD_ONLY', // 'GUILD_ONLY', 'DM_ONLY', 'ALL'
     description: 'Control custom sets (background and penalty) usage',
     debug: false
 };

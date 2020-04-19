@@ -44,7 +44,7 @@ exports.run = async (msg, args) => {
 
 const usage = new Map();
 usage.set('', 'Lists all custom backgrounds');
-usage.set('add <background>', 'Adds the custom background <background> as written');
+usage.set('add <background>', 'Adds the custom background as written');
 usage.set('del <#>', 'Deletes the custom background at #');
 exports.usage = usage;
 

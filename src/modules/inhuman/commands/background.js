@@ -13,7 +13,12 @@ exports.run = async (msg, args) => {
     if (isNaN(numBackgrounds)) numBackgrounds = 3;
 
     const ogBackgrounds = await bot.db.get('backgrounds', 'list');
-    const useCustom = await bot.db.get(msg.author.id, 'inhuman.useCustom');
+    let useCustom;
+    if (msg.guild) {
+        useCustom = await bot.db.get(msg.guild, `inhuman.players.${msg.author.id}.useCustom`);
+    } else {
+        useCustom = false;
+    }
 
     let customBackgrounds = [];
     if (msg.guild && useCustom) {

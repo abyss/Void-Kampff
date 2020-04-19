@@ -44,7 +44,7 @@ exports.run = async (msg, args) => {
 
 const usage = new Map();
 usage.set('', 'Lists all custom penalties');
-usage.set('add <penalty>', 'Adds the custom penalty <penalty> as written');
+usage.set('add <penalty>', 'Adds the custom penalty as written');
 usage.set('del <#>', 'Deletes the custom penalty at #');
 exports.usage = usage;
 
