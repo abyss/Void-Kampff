@@ -13,7 +13,7 @@ exports.run = async (msg, args) => {
     if (isNaN(numPenalties)) numPenalties = 3;
 
     const ogPenalties = await bot.db.get('penalties', 'list');
-    const useCustom = await bot.db.get(msg.author.id, 'inhuman.useCustom');
+    const useCustom = await bot.db.get(msg.guild, `inhuman.players.${msg.author.id}.useCustom`);
 
     let customPenalties = [];
     if (msg.guild && useCustom) {
