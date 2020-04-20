@@ -23,5 +23,7 @@ exports.findModule = async function (moduleText) {
     const modules = await bot.db.get('modules', 'list');
     const fuse = new Fuse(modules, options);
     const results = fuse.search(moduleText);
-    return results[0].item;
+
+    if (Array.isArray(results) && results[0]) return results[0].item;
+    else return undefined;
 };

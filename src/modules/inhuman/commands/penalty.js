@@ -30,7 +30,7 @@ exports.run = async (msg, args) => {
         .setColor(userColor(bot.client.user, msg.guild))
         .setTitle('Random penalty options:')
         .setDescription(selected.join('\n'))
-        .setFooter('Investigator eliminates one penalty, then the Subject picks the final penalty choice');
+        .setFooter('The Investigator eliminates one penalty, then the Subject picks one from the two remaining options');
 
     send(msg.channel, aboutMsg);
     return true;

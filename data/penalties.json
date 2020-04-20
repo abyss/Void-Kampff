@@ -3,19 +3,19 @@
         "Remain silent for ten seconds",
         "Apologize",
         "Swear",
-        "Say three consecutive words beginning with the same letter. ",
-        "Say two consecutive rhyming words. ",
+        "Say three consecutive words beginning with the same letter",
+        "Say two consecutive rhyming words",
         "Interrupt the investigator",
         "Ask for clarification",
-        "Restate a question in your own words. ",
+        "Restate a question in your own words",
         "Say a word with at least five syllables",
         "Compliment the investigator",
-        "Say the name of a punctuation mark. ",
+        "Say the name of a punctuation mark",
         "Use an ordinal number other than \"First\"",
-        "Don't not use a double negative.",
+        "Don't not use a double negative",
         "Say three words beginning with consecutive letters of the alphabet",
-        "Answer a question in exactly five words. ",
-        "Begin and end a sentence with the same word. ",
-        "Say any three letters in a row."
+        "Answer a question in exactly five words",
+        "Begin and end a sentence with the same word",
+        "Say any three letters in a row"
     ]
 }

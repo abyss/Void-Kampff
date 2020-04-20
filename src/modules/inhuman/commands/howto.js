@@ -10,7 +10,7 @@ exports.run = async (msg) => {
         .setTitle('How to play Inhuman Conditions with Void-Kampff')
         .addField('Select Module', stripIndents`
             Both players will need to mutually select a module. \
-            To see the different module options run the \`module\` \
+            To see the different module options, run the \`module\` \
             command.
         `)
         .addField('Select Penalty', stripIndents`
