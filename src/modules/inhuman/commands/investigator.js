@@ -57,7 +57,7 @@ exports.run = async (msg, args) => {
             .setColor(whilePromptColor)
             .setTitle(`${prompt.requirement}`)
             .setDescription(description)
-            .setFooter('While fulfulling another prompt, subject must answer to be a human');
+            .setFooter('While fulfulling another prompt, Subject must answer to be a human');
 
         await send(msg.author, embed);
     });

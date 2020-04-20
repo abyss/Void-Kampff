@@ -4,7 +4,7 @@ const bot = require('../../bot');
 exports.config = {
     name: 'Inhuman Conditions',
     description: 'Commands to play Inhuman Conditions',
-    debug: true
+    debug: false
 };
 
 exports.findModule = async function (moduleText) {

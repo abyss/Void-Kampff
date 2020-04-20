@@ -10,7 +10,7 @@ exports.run = async (msg) => {
         .setColor(userColor(client.user, msg.guild))
         .setTitle('Void-Kampff')
         .setDescription(stripIndents`
-            Void-Kampff is a bot for playing **Inhuman Conditions.**
+            Void-Kampff is a bot for playing **Inhuman Conditions**.
 
             **Inhuman Conditions** is a five-minute, two-player game of surreal \
             interrogation and conversational judo, set in the heart of a \

@@ -7,46 +7,46 @@ const { stripIndents } = require('common-tags');
 exports.run = async (msg) => {
     const output = new RichEmbed()
         .setColor(userColor(bot.client.user, msg.guild))
-        .setTitle('How to play Inhuman Conditions via Void-Kampff')
+        .setTitle('How to play Inhuman Conditions with Void-Kampff')
         .addField('Select Module', stripIndents`
             Both players will need to mutually select a module. \
-            You can see which modules exist to select from by running \
-            the \`module\` command.
+            To see the different module options run the \`module\` \
+            command.
         `)
         .addField('Select Penalty', stripIndents`
-            Run the \`penalty\` command to receive three random penalties. \
-            The investigator eliminates one of the penalty options, and the \
-            subject picks a penalty from the remaining two. Make sure both \
-            players have a clear understanding of the penalty, as humans would.
+            Run the \`penalty\` command to get three random penalties. \
+            The Investigator should eliminate one of the penalty options. Then \
+            the Subject should tell the Investigator which of the two they \
+            wish to use.
         `)
         .addField('Get Investigator Prompts', stripIndents`
             The Investigator should run the command \`investigator MODULE\`, \
-            replacing \`MODULE\` with the name of the selected module. The \
-            investigator will receive several private messages with the \
+            replacing \`MODULE\` with the name of your chosen module. The \
+            Investigator will be sent several direct messages with the \
             prompts for the module. It may take a moment for all of the \
-            messages to arrive, be patient.
+            messages to arrive, give it a moment.
         `)
         .addField('Get Subject Card', stripIndents`
-            The subject should run the command \`subject MODULE\`, replacing \
-            \`MODULE\` with the name of the selected module to receive a role \
-            card via private message. Investigator, I assure you they are \
-            ~~robot~~ **human**.
-            `)
+            The Subject should run the command \`subject MODULE\`, replacing \
+            \`MODULE\` with the name of your chosen module. You will be sent a role \
+            card via direct message. Keep this secret. Investigator, I assure \
+             you they are ~~robot~~ **human**.
+        `)
+        .addField('Select a Background', stripIndents`
+            Run the \`background\` command to get three random \
+            backgrounds. The Subject should pick from one of these to \
+            develop their personality and to help demonstrate their humanity.
+        `)
         .addField('~~Inteference Task~~ Moment of Silence', stripIndents`
             In lieu of an Interference Task, which has been performed \
             automatically for you, please have a moment of silence for our \
-            fallen ~~robot~~ **human** brethren, and to allow the subject time to \
-            read their card at human-like speeds.
-        `)
-        .addField('Select a Background', stripIndents`
-            Run the  \`background\` command to receive three random \
-            backgrounds. The subject should pick from one of these to \
-            develop their personality and to demonstrate their humanity.
+            fallen ~~robot~~ **human** brethren of the Robot War, and to allow \
+            the Subject time to read their card at a human-like speed.
         `)
         .addField('Prepare a Timer', stripIndents`
-            Find a way to syncronize a 5 minute timer for both players. \
-            Prepare the timer, but do not start it yet. If you need \
-            suggestions, feel free to ask other humans on your server.
+            Both players should synchronize a timer for 5 minutes, but should \
+            not press 'start' yet. If you need a timer, consult your favorite \
+            Internet search engine.
         `)
         .addField('Final steps', stripIndents`
             Once all of the above is prepared, you are ready to start. \
