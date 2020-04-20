@@ -8,9 +8,9 @@ const RichEmbed = require('discord.js').RichEmbed;
 exports.run = async (msg) => {
     const aboutMsg = new RichEmbed()
         .setColor(userColor(client.user, msg.guild))
-        .setTitle('Voight-Kampff Tester')
+        .setTitle('Void-Kampff')
         .setDescription(stripIndents`
-            Voight-Kampff is a bot for playing **Inhuman Conditions.**
+            Void-Kampff is a bot for playing **Inhuman Conditions.**
 
             **Inhuman Conditions** is a five-minute, two-player game of surreal \
             interrogation and conversational judo, set in the heart of a \
@@ -39,9 +39,9 @@ exports.run = async (msg) => {
             [https://robots.management/](https://robots.management/), and \
             support the creators by buying a copy!
 
-            This bot was created by [Abyss#0473](https://abyss.dev) to \
+            This bot was created by [Abyss](https://abyss.dev) to \
             facilitate these tests. You can find out more by running the \
-            \`help\` command.
+            \`howto\` command.
         `);
 
     send(msg.channel, aboutMsg);

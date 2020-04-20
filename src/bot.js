@@ -22,7 +22,7 @@ client.on('ready', () => {
     bot.log(`User: ${client.user.tag} <ID: ${client.user.id}>`);
     bot.log(`Users: ${client.users.size}, Guilds: ${client.guilds.size}`);
 
-    client.user.setPresence({ game: { name: `Inhuman Conditions | @${client.user.username} help` }, status: 'online' });
+    client.user.setPresence({ game: { name: `Inhuman Conditions | @${client.user.username} howto` }, status: 'online' });
     bot.log('Bot loaded!');
 
     client.generateInvite(bot.config.permissions).then((invite_link) => {

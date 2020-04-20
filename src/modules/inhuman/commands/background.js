@@ -34,7 +34,8 @@ exports.run = async (msg, args) => {
     const aboutMsg = new RichEmbed()
         .setColor(userColor(bot.client.user, msg.guild))
         .setTitle('Choose one of these backgrounds:')
-        .setDescription(selected.join('\n'));
+        .setDescription(selected.join('\n'))
+        .setFooter('Subject picks their backgrounds');
 
     send(msg.channel, aboutMsg);
     return true;

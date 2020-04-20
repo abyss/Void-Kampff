@@ -35,6 +35,7 @@ exports.run = async (msg, args) => {
         roleCard.setColor(humanColor)
             .setTitle('You are a Plain Human')
             .setDescription('**You have nothing to hide.**')
+            .addField('Win Condition', 'Survive until the end, and be stamped Human.')
             .setThumbnail(humanIcon);
     } else {
         const role = module.robots[roleIndex];
@@ -43,10 +44,16 @@ exports.run = async (msg, args) => {
             roleCard.setColor(passiveColor)
                 .setTitle(`You are a Passive Robot: ${role.theme}`)
                 .setDescription(stripIndents`
-                    **Complete the penalty once for each
-                    time you violate the below compulsion:**
-
+                    **Once the timer has started:**
                     ${role.compulsion}
+                `)
+                .addField('Win Condition', stripIndents`
+                    Survive until the end, and be stamped Human.
+
+                    You must complete the penalty once for every time you \
+                    break your compulsion, *before you finish answering the \
+                    final question.* If you do not, you must audibly malfunction \
+                    in an obvious way until the Investigator submits **ROBOT**.
                 `)
                 .setThumbnail(passiveIcon);
         } else if (role.type === 'violent') {
@@ -59,17 +66,25 @@ exports.run = async (msg, args) => {
             roleCard.setColor(violentColor)
                 .setTitle(`You are a Violent Robot: ${role.theme}`)
                 .setDescription(stripIndents`
-                    **Complete 2/3 of the following, wait ten seconds,
-                    then inform the investigator you are killing them.**
-
+                    **Tasks:**
                     ${tasks}
+                `)
+                .addField('Win Condition', stripIndents`
+                    Complete 2/3 of the above tasks, wait ten seconds, and then \
+                    inform the investigator you are killing them.
+
+                    You may continue to answer questions during the ten seconds.
+
+                    You must complete this *before you finish answering the \
+                    final question.* If you do not, you must audibly malfunction \
+                    in an obvious way until the Investigator submits **ROBOT**.
                 `)
                 .setThumbnail(violentIcon);
         } else {
             roleCard.setColor('FFFF00')
                 .setTitle('Error!')
                 .setDescription(`There was an error. Please inform Abyss! with \
-                a screenshot of this error.
+                a screenshot of this error, and then try rolling a new card.
 
                 Error information - input: ${args.join(' ')}`);
 

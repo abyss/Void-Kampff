@@ -5,7 +5,7 @@ function setTitle(title) {
     process.stdout.write(`\u001B]0;${title}\u0007`);
 }
 
-setTitle(`Voight-Kampff ${bot.config.version}`);
+setTitle(`Void-Kampff ${bot.config.version}`);
 
 process.on('unhandledRejection', err => {
     const errorMsg = (err.stack || err || '').toString();

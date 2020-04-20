@@ -23,7 +23,7 @@ exports.run = async (msg, args) => {
 
     const taskKey = new RichEmbed()
         .setColor(taskKeyColor)
-        .setTitle(`${module.name} Inteference Task Key (Read before you start the timer)`)
+        .setTitle(`${module.name} Introduction (Read before you start the timer)`)
         .setDescription(module.intro);
 
     await send(msg.author, taskKey);
