@@ -2,6 +2,7 @@ const { send } = require('../../../utils/chat');
 const bot = require('../../../bot');
 const { RichEmbed } = require('discord.js');
 const { userColor } = require('../../../utils/colors');
+const { getGuildPrefix } = require('../../../utils/discord');
 
 exports.run = async (msg, args) => {
     let customPenalties = await bot.db.get(msg.guild, 'inhuman.customPenalties');
@@ -16,7 +17,13 @@ exports.run = async (msg, args) => {
         customPenalties.forEach((penalty, i) => output.push(`**${i+1}.** ${penalty}`));
         embed.setDescription(output.join('\n'));
 
-        await send(msg.channel, embed);
+        let prefixMessage = '';
+        if (msg.guild) {
+            const guildPrefix = await getGuildPrefix(msg.guild);
+            prefixMessage = `To use custom background and penalties with this server, run the command \`${guildPrefix}custom on\``;
+        }
+
+        await send(msg.channel, prefixMessage, embed);
     } else {
         if (args[0] === 'del') {
             let index = parseInt(args[1], 10);
