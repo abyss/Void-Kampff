@@ -2,7 +2,7 @@
 
 **Void-Kampff** is a [Discord](https://discordapp.com) bot developed by [Abyss](https://abyss.dev) for playing [**Inhuman Conditions**](https://robots.management).
 
-Come play at [B&C Gaming](https://gaming.abyss.dev) on Discord.
+Come play at [B&C Gaming](https://gaming.abyss.dev) on Discord!
 
 ## About Inhuman Conditions
 
