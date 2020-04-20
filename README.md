@@ -24,7 +24,7 @@ Development & (*Limited*) Support Server: [voidDev](https://discord.abyss.dev)
 
 Gaming Server: [B&C Gaming](https://gaming.abyss.dev)
 
-If you would like to add Void-Kampff to your own server, use [this link](https://discordapp.com/oauth2/authorize?client_id=699756552038383778&permissions=3072&scope=bot).
+If you would like to add Void-Kampff to your own server, use [this link](https://discordapp.com/oauth2/authorize?client_id=699756552038383778&permissions=0&scope=bot).
 
 ## License
 All Inhuman Conditions content is licensed under the original license [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). Some content has been modified slightly from the original to better enable audio-only play.
