@@ -1,8 +1,8 @@
 const { RichEmbed } = require('discord.js');
-const { stripIndents } = require('common-tags');
 
 const { findModule } = require('../index');
 const { send } = require('../../../utils/chat');
+const { stripIndentsExtra } = require('../../../utils/general');
 
 const chanceHuman = 0.5; // Percentage chance to be human
 
@@ -35,7 +35,7 @@ exports.run = async (msg, args) => {
         roleCard.setColor(humanColor)
             .setTitle('You are a Plain Human')
             .setDescription('**You have nothing to hide.**')
-            .addField('\u200b', stripIndents`
+            .addField('\u200b', stripIndentsExtra`
                 **Win Condition:**
 
                 Survive until the end, and be stamped **HUMAN**.
@@ -47,14 +47,14 @@ exports.run = async (msg, args) => {
         if (role.type === 'patient') {
             roleCard.setColor(patientColor)
                 .setTitle('You are a Patient Robot')
-                .setDescription(stripIndents`
+                .setDescription(stripIndentsExtra`
                     *${role.theme}*
 
                     **Once the timer has started:**
 
                     ${role.compulsion}
                 `)
-                .addField('\u200b', stripIndents`
+                .addField('\u200b', stripIndentsExtra`
                     **Win Condition:**
 
                     Survive until the end, and be stamped **HUMAN**.
@@ -74,14 +74,14 @@ exports.run = async (msg, args) => {
 
             roleCard.setColor(violentColor)
                 .setTitle('You are a Violent Robot')
-                .setDescription(stripIndents`
+                .setDescription(stripIndentsExtra`
                     *${role.theme}*
 
                     **Tasks:**
 
                     ${tasks}
                 `)
-                .addField('\u200b', stripIndents`
+                .addField('\u200b', stripIndentsExtra`
                     **Win Condition:**
 
                     Complete 2/3 of the above tasks, wait ten seconds, and then \

@@ -1,7 +1,7 @@
 const { send } = require('../../../utils/chat');
 const { client } = require('../../../bot');
 const { userColor } = require('../../../utils/colors');
-const { stripIndents } = require('common-tags');
+const { stripIndentsExtra } = require('../../../utils/general');
 
 const RichEmbed = require('discord.js').RichEmbed;
 
@@ -9,7 +9,7 @@ exports.run = async (msg) => {
     const aboutMsg = new RichEmbed()
         .setColor(userColor(client.user, msg.guild))
         .setTitle('Void-Kampff')
-        .setDescription(stripIndents`
+        .setDescription(stripIndentsExtra`
             Void-Kampff is a bot for playing **Inhuman Conditions**.
 
             **Inhuman Conditions** is a five-minute, two-player game of surreal \

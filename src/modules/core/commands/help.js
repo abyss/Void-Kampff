@@ -3,7 +3,7 @@ const { send } = require('../../../utils/chat');
 const { getGuildPrefix } = require('../../../utils/discord');
 const { userColor } = require('../../../utils/colors');
 const { sendCommandHelp } = require('../../../utils/chat');
-const { stripIndents } = require('common-tags');
+const { stripIndentsExtra } = require('../../../utils/general');
 
 exports.run = async (msg, args) => {
     const { validLocation, hasPermission, checkDebug } = bot.commands.permissions;
@@ -38,7 +38,7 @@ exports.run = async (msg, args) => {
 
         for (const modName of Object.keys(commandStructure).sort()) {
             modSection.push(
-                stripIndents`
+                stripIndentsExtra`
                 __**${modName}**__ **-** *${descriptions[modName]}*
                 \`${commandStructure[modName].sort().join('`, `')}\``
             );
@@ -51,7 +51,7 @@ exports.run = async (msg, args) => {
             color: color,
             title: 'Command List',
             description:
-                stripIndents`
+                stripIndentsExtra`
                 *Get more information on any command with* \`${prefix}${this.config.cmd} <command>\`
                 *You can tag the bot instead of using a prefix!*
 

@@ -1,3 +1,5 @@
+const { stripIndents, TemplateTag } = require('common-tags');
+
 exports.asyncForEach = async function asyncForEach(array, callback) {
     for (let i = 0; i < array.length; i++) {
         await callback(array[i], i, array);
@@ -35,3 +37,10 @@ exports.shuffleArray = function (array) {
 
     return array;
 };
+
+// Fixes a problem with stripIndents not stripping indents from an escaped newline
+exports.stripIndentsExtra = new TemplateTag([{
+    onEndResult(res) {
+        return stripIndents(res).replace(/ +/g, ' ').replace(/\n /g, '\n');
+    }
+}]);
