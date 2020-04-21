@@ -37,7 +37,7 @@ exports.run = async (msg) => {
             backgrounds. The Subject should pick from one of these to \
             develop their personality and to help demonstrate their humanity.
         `)
-        .addField('~~Interference Task~~ Moment of Silence', stripIndentsExtra`
+        .addField('~~Interference Task~~  Moment of Silence', stripIndentsExtra`
             In lieu of an Interference Task, which has been performed \
             automatically for you, please have a moment of silence for our \
             fallen ~~robot~~ **human** brethren of the Robot War, and to allow \

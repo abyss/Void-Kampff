@@ -16,6 +16,6 @@ exports.config = {
     botPermissions: [], // Permissions needed by the bot to use this command.
     defaultPermissions: [], // Default permissions to use this command by user
     location: 'ALL', // 'GUILD_ONLY', 'DM_ONLY', 'ALL'
-    description: 'Get the wincon matrix image',
+    description: 'Displays the wincon matrix image',
     debug: false
 };
