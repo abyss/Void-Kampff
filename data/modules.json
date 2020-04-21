@@ -247,7 +247,7 @@
                 {
                     "type": "patient",
                     "theme": "Visualization",
-                    "compulsion": "You may only mention objects that you can see from where you are sitting."
+                    "compulsion": "You may only mention objects that you would be able to see sitting in a standard office."
                 },
                 {
                     "type": "patient",
@@ -264,7 +264,7 @@
                     "theme": "Simplicity",
                     "tasks": [
                         "Give one-word answers to 3 questions, and don't elaborate until asked.",
-                        "Answer 2 questions nonverbally, and stay silent until prompted."
+                        "Answer 2 questions without using words, and stay silent until prompted.\n\n*(For example, \"mmmm\", \"mhm\", \"umm\")*"
                     ]
                 },
                 {
