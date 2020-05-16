@@ -1,6 +1,6 @@
 const { send } = require('../../../utils/chat');
 const bot = require('../../../bot');
-const { RichEmbed } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 const { userColor } = require('../../../utils/colors');
 const { getGuildPrefix } = require('../../../utils/discord');
 
@@ -9,7 +9,7 @@ exports.run = async (msg, args) => {
     if (!Array.isArray(customBackgrounds)) customBackgrounds = [];
 
     if (!args.length) {
-        const embed = new RichEmbed()
+        const embed = new MessageEmbed()
             .setTitle('Custom backgrounds for this server:')
             .setColor(userColor(bot.client.user, msg.guild));
 

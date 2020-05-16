@@ -3,10 +3,10 @@ const { client } = require('../../../bot');
 const { userColor } = require('../../../utils/colors');
 const { stripIndentsExtra } = require('../../../utils/general');
 
-const RichEmbed = require('discord.js').RichEmbed;
+const { MessageEmbed } = require('discord.js');
 
 exports.run = async (msg) => {
-    const aboutMsg = new RichEmbed()
+    const aboutMsg = new MessageEmbed()
         .setColor(userColor(client.user, msg.guild))
         .setTitle('Void-Kampff')
         .setDescription(stripIndentsExtra`

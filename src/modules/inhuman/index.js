@@ -3,6 +3,7 @@ const bot = require('../../bot');
 
 exports.config = {
     name: 'Inhuman Conditions',
+    enabled: true,
     description: 'Commands to play Inhuman Conditions',
     debug: false
 };

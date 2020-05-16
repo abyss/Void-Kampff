@@ -1,4 +1,4 @@
-const { RichEmbed } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
 const { findModule } = require('../index');
 const { send } = require('../../../utils/chat');
@@ -21,7 +21,7 @@ exports.run = async (msg, args) => {
         return true;
     }
 
-    const taskKey = new RichEmbed()
+    const taskKey = new MessageEmbed()
         .setColor(taskKeyColor)
         .setTitle(`${module.name} Introduction (Read before you start the timer)`)
         .setDescription(module.intro);
@@ -36,7 +36,7 @@ exports.run = async (msg, args) => {
             .map((ex, i) => `**${String.fromCharCode(65 + i)}.** ${ex}`)
             .join('\n');
         const description = `*Suggested prompts:* \n${examples}`;
-        const embed = new RichEmbed()
+        const embed = new MessageEmbed()
             .setColor(promptColor)
             .setTitle(`${prompt.requirement}`)
             .setDescription(description)
@@ -53,7 +53,7 @@ exports.run = async (msg, args) => {
             .map((ex, i) => `**${String.fromCharCode(65 + i)}.** ${ex}`)
             .join('\n');
         const description = `*Suggested prompts:* \n${examples}`;
-        const embed = new RichEmbed()
+        const embed = new MessageEmbed()
             .setColor(whilePromptColor)
             .setTitle(`${prompt.requirement}`)
             .setDescription(description)

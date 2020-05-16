@@ -1,4 +1,4 @@
-const { RichEmbed } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
 const { findModule } = require('../index');
 const { send } = require('../../../utils/chat');
@@ -27,7 +27,7 @@ exports.run = async (msg, args) => {
         return true;
     }
 
-    let roleCard = new RichEmbed();
+    let roleCard = new MessageEmbed();
     const roleIndex = Math.floor(Math.random() * module.robots.length);
     const humanRoll = Math.random();
 

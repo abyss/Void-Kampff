@@ -2,7 +2,7 @@ const { send } = require('../../../utils/chat');
 const bot = require('../../../bot');
 const { userColor } = require('../../../utils/colors');
 const { shuffleArray } = require('../../../utils/general');
-const { RichEmbed } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
 exports.run = async (msg, args) => {
     let numPenalties;
@@ -26,7 +26,7 @@ exports.run = async (msg, args) => {
 
     const selected = penalties.slice(0, numPenalties);
 
-    const aboutMsg = new RichEmbed()
+    const aboutMsg = new MessageEmbed()
         .setColor(userColor(bot.client.user, msg.guild))
         .setTitle('Random penalty options:')
         .setDescription(selected.join('\n'))

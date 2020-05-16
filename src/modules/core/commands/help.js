@@ -4,9 +4,9 @@ const { getGuildPrefix } = require('../../../utils/discord');
 const { userColor } = require('../../../utils/colors');
 const { sendCommandHelp } = require('../../../utils/chat');
 const { stripIndentsExtra } = require('../../../utils/general');
+const { checkDebug, moduleEnabled, hasPermission, validLocation } = require('../../../modular-commands/permissions');
 
 exports.run = async (msg, args) => {
-    const { validLocation, hasPermission, checkDebug } = bot.commands.permissions;
     const type = msg.channel.type;
 
     if (args.length === 0) {
@@ -17,12 +17,8 @@ exports.run = async (msg, args) => {
             if (!validLocation(type, command)) continue;
 
             if (!checkDebug(msg.author, command)) continue;
-
-            // type === text is a guild text channel, only
-            if (type === 'text') {
-                if (!await hasPermission(msg.guild, msg.member, command))
-                    continue;
-            }
+            if (!await moduleEnabled(msg.guild, command.mod)) continue;
+            if (!await hasPermission(msg.guild, msg.member, command)) continue;
 
             const modName = command.mod.config.name;
 
@@ -56,9 +52,9 @@ exports.run = async (msg, args) => {
                 *You can tag the bot instead of using a prefix!*
 
                 ${modSection.join('\n\n')}`,
-            footer: {
-                icon_url: bot.client.user.avatarURL,
-                text: 'voidBot Help Command'
+            author: {
+                name: 'voidBot Help Command',
+                icon_url: bot.client.user.avatarURL(),
             }
         };
 
@@ -81,8 +77,10 @@ exports.run = async (msg, args) => {
         if (!checkDebug(msg.author, command))
             return commandNotFound(msg.channel, cmdText);
 
-        // if this is in a guild, check permissions for command.
-        if (type === 'text' && !await hasPermission(msg.guild, msg.member, command))
+        if (!await moduleEnabled(msg.guild, command.mod))
+            return commandNotFound(msg.channel, cmdText);
+
+        if (!await hasPermission(msg.guild, msg.member, command))
             return commandNotFound(msg.channel, cmdText);
 
         sendCommandHelp(msg.channel, command);

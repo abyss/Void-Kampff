@@ -8,29 +8,22 @@ bot.client = client;
 
 require('./startup');
 
-const { asyncForEach } = require('./utils/general');
-const { serverStats } = require('./utils/discord');
-
-function allServerStats() {
-    asyncForEach(client.guilds.array(), async (guild) => {
-        await serverStats(guild);
-    });
-}
+const { serverStats, allServerUpkeep } = require('./utils/discord');
 
 client.on('ready', () => {
     bot.log('Stats:');
     bot.log(`User: ${client.user.tag} <ID: ${client.user.id}>`);
-    bot.log(`Users: ${client.users.size}, Guilds: ${client.guilds.size}`);
+    bot.log(`Users: ${client.users.cache.size}, Guilds: ${client.guilds.cache.size}`);
 
-    client.user.setPresence({ game: { name: `Inhuman Conditions | @${client.user.username} howto` }, status: 'online' });
+    client.user.setPresence({ activity: { name: `Inhuman Conditions | @${client.user.username} howto` }, status: 'online' });
     bot.log('Bot loaded!');
 
     client.generateInvite(bot.config.permissions).then((invite_link) => {
         bot.log(`Invite Link: ${chalk.cyan.underline(invite_link)}`);
     });
 
-    allServerStats();
-    client.setInterval(allServerStats, 1000 * 60 * 30); // Every 30 Mins
+    allServerUpkeep();
+    client.setInterval(allServerUpkeep, 1000 * 60 * 30); // Every 30 Mins
 });
 
 client.on('message', message => {
@@ -41,10 +34,9 @@ client.on('message', message => {
 client.on('guildCreate', guild => {
     serverStats(guild);
     bot.log(`Joined new guild: ${guild.name} (${guild.id})`);
-    bot.log(`Users: ${client.users.size}, Guilds: ${client.guilds.size}`);
+    bot.log(`Users: ${client.users.cache.size}, Guilds: ${client.guilds.cache.size}`);
 });
 
-// TODO: Handle ErrorEvent ECONNRESET gracefully without log when not debug
 client.on('error', err => {
     const errorMsg = (err.stack || err.error || err || '').toString();
     bot.error(`discord.js Error: \n${errorMsg}`);

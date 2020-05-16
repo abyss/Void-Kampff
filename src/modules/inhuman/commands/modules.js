@@ -1,7 +1,7 @@
 const { send } = require('../../../utils/chat');
 const bot = require('../../../bot');
 const { userColor } = require('../../../utils/colors');
-const { RichEmbed } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 const { shuffleArray } = require('../../../utils/general');
 
 exports.run = async (msg, args) => {
@@ -9,7 +9,7 @@ exports.run = async (msg, args) => {
     // Remove all hidden modules
     modules = modules.filter((module) => !module.hidden);
 
-    const moduleList = new RichEmbed()
+    const moduleList = new MessageEmbed()
         .setColor(userColor(bot.client.user, msg.guild))
         .setTitle('Together decide from these modules:');
 

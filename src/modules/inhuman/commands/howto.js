@@ -1,11 +1,11 @@
 const { send } = require('../../../utils/chat');
 const bot = require('../../../bot');
 const { userColor } = require('../../../utils/colors');
-const { RichEmbed } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 const { stripIndentsExtra } = require('../../../utils/general');
 
 exports.run = async (msg) => {
-    const output = new RichEmbed()
+    const output = new MessageEmbed()
         .setColor(userColor(bot.client.user, msg.guild))
         .setTitle('How to play Inhuman Conditions with Void-Kampff')
         .addField('Select Module', stripIndentsExtra`

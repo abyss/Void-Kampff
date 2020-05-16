@@ -2,7 +2,7 @@ const { send } = require('../../../utils/chat');
 const bot = require('../../../bot');
 const { userColor } = require('../../../utils/colors');
 const { shuffleArray } = require('../../../utils/general');
-const { RichEmbed } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
 exports.run = async (msg, args) => {
     let numBackgrounds;
@@ -31,7 +31,7 @@ exports.run = async (msg, args) => {
 
     const selected = backgrounds.slice(0, numBackgrounds);
 
-    const aboutMsg = new RichEmbed()
+    const aboutMsg = new MessageEmbed()
         .setColor(userColor(bot.client.user, msg.guild))
         .setTitle('Choose one of these backgrounds:')
         .setDescription(selected.join('\n'))

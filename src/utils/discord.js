@@ -1,6 +1,7 @@
 const Fuse = require('fuse.js');
 const bot = require('../bot');
 const { FLAGS } = require('discord.js').Permissions;
+const { asyncForEach } = require('./general');
 
 exports.resolveId = function (obj) {
     if (typeof obj === 'string') {
@@ -29,7 +30,7 @@ exports.findExactRole = function (guild, roleText) {
         roleText = '@everyone';
     }
 
-    let role = guild.roles.find(role => {
+    let role = guild.roles.cache.find(role => {
         if (role.name === roleText) return true;
         if (role.id === roleText) return true;
         return false;
@@ -57,14 +58,14 @@ exports.findRole = function (guild, roleText) {
         roleText = tagged[1]; // First is the entire string, second is Id
     }
 
-    const fuse = new Fuse(Array.from(guild.roles.values()), options);
+    const fuse = new Fuse(Array.from(guild.roles.cache.values()), options);
     const results = fuse.search(roleText);
 
     if (Array.isArray(results) && results[0]) return results[0].item;
     else return undefined;
 };
 
-exports.findUser = function (guild, userText) {
+exports.findMember = function (guild, userText) {
     const options = {
         shouldSort: true,
         threshhold: 0.3, // between 0 (perfect) to 1 (complete mismatch)
@@ -84,7 +85,7 @@ exports.findUser = function (guild, userText) {
         userText = tagged[1]; // First is the entire string, second is Id
     }
 
-    const fuse = new Fuse(Array.from(guild.members.values()), options);
+    const fuse = new Fuse(Array.from(guild.members.cache.values()), options);
     const results = fuse.search(userText);
 
     if (Array.isArray(results) && results[0]) return results[0].item;
@@ -104,6 +105,30 @@ exports.serverStats = async function (guild) {
     };
 
     await bot.db.set(guild.id, '__metadata__', stats);
+};
+
+exports.cleanPermissions = async function (guild) {
+    const permissions = await bot.db.get(guild, 'permissions');
+    if (!permissions) return;
+    for (let command of Object.keys(permissions)) {
+        for (let roleId of Object.keys(permissions[command])) {
+            const role = guild.roles.cache.get(roleId);
+            if (!role) {
+                bot.debug(`Deleting role ID: ${roleId} on ${guild.name}`);
+                await bot.db.delete(
+                    guild,
+                    `permissions.${command}.${roleId}`
+                );
+            }
+        }
+    }
+};
+
+exports.allServerUpkeep = async function () {
+    asyncForEach(bot.client.guilds.cache.array(), async (guild) => {
+        await exports.serverStats(guild);
+        await exports.cleanPermissions(guild);
+    });
 };
 
 // Extend flags to include NOONE
