@@ -703,7 +703,7 @@
                     ]
                 },
                 {
-                    "requirement": "Propose an ineffective response to a treat already described",
+                    "requirement": "Propose an ineffective response to a threat already described",
                     "examples": [
                         "How might someone try to fix that, only to end up making things worse?",
                         "What's a response that would solve your immediate problem here, but cause worse problems long-term?"
