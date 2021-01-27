@@ -15,3 +15,10 @@ data/*
 !data/backgrounds.json
 !data/modules.json
 .env
+
+# Jest
+coverage/
+.tests-*/
+
+# Editor
+.vscode

@@ -1,16 +1,13 @@
 const Fuse = require('fuse.js');
 const bot = require('../bot');
 const { FLAGS } = require('discord.js').Permissions;
-const { asyncForEach } = require('./general');
 
 exports.resolveId = function (obj) {
-    if (typeof obj === 'string') {
-        return obj;
-    } else if (typeof obj.id === 'string') {
-        return obj.id;
-    } else {
-        return '';
-    }
+    if (!obj) return '';
+    if (typeof obj === 'string') return obj;
+    if (typeof obj.id === 'string') return obj.id;
+
+    return '';
 };
 
 exports.getGuildPrefix = async function (guild) {
@@ -42,7 +39,7 @@ exports.findExactRole = function (guild, roleText) {
 exports.findRole = function (guild, roleText) {
     const options = {
         shouldSort: true,
-        threshhold: 0.3, // between 0 (perfect) to 1 (complete mismatch)
+        threshold: 0.6, // between 0 (perfect) to 1 (complete mismatch)
         location: 0,
         distance: 100,
         maxPatternLength: 20,
@@ -68,7 +65,7 @@ exports.findRole = function (guild, roleText) {
 exports.findMember = function (guild, userText) {
     const options = {
         shouldSort: true,
-        threshhold: 0.3, // between 0 (perfect) to 1 (complete mismatch)
+        threshold: 0.6, // between 0 (perfect) to 1 (complete mismatch)
         location: 0,
         distance: 100,
         maxPatternLength: 20,
@@ -99,7 +96,7 @@ exports.serverStats = async function (guild) {
         id: guild.id,
         name: guild.name,
         owner: {
-            id: guild.id,
+            id: guild.owner.user.id,
             tag: guild.owner.user.tag
         }
     };
@@ -125,10 +122,21 @@ exports.cleanPermissions = async function (guild) {
 };
 
 exports.allServerUpkeep = async function () {
-    asyncForEach(bot.client.guilds.cache.array(), async (guild) => {
+    // TODO: Convert to Promise.all() for parallel.
+    for (const guild of bot.client.guilds.cache.array()) {
         await exports.serverStats(guild);
         await exports.cleanPermissions(guild);
-    });
+    }
+};
+
+exports.userColor = function (user, guild) {
+    const uid = exports.resolveId(user);
+
+    if (guild) {
+        return guild.members.cache.get(uid).displayColor;
+    } else {
+        return 'C27C0E';
+    }
 };
 
 // Extend flags to include NOONE

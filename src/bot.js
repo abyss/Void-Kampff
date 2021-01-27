@@ -3,7 +3,7 @@ const discordjs = require('discord.js');
 
 const bot = {};
 module.exports = bot;
-const client = new discordjs.Client();
+const client = new discordjs.Client({ ws:  { intents: discordjs.Intents.ALL }});
 bot.client = client;
 
 require('./startup');
@@ -18,7 +18,9 @@ client.on('ready', () => {
     client.user.setPresence({ activity: { name: `Inhuman Conditions | @${client.user.username} howto` }, status: 'online' });
     bot.log('Bot loaded!');
 
-    client.generateInvite(bot.config.permissions).then((invite_link) => {
+    client.generateInvite({
+        permissions: bot.config.permissions
+    }).then((invite_link) => {
         bot.log(`Invite Link: ${chalk.cyan.underline(invite_link)}`);
     });
 
@@ -38,6 +40,6 @@ client.on('guildCreate', guild => {
 });
 
 client.on('error', err => {
-    const errorMsg = (err.stack || err.error || err || '').toString();
-    bot.error(`discord.js Error: \n${errorMsg}`);
+    bot.error('discord.js Error:');
+    bot.error(err);
 });

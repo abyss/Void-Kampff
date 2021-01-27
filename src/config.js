@@ -1,24 +1,21 @@
 const path = require('path');
 
-const { parseBoolean } = require('./utils/general');
 const { resolveId } = require('./utils/discord');
 
 if (!process.env.TOKEN || !/^[A-Za-z0-9._-]+$/.test(process.env.TOKEN)) {
     console.error('Environment variable TOKEN is missing or incorrect.');
-    process.exit(1);
+    throw new Error('TOKEN_INVALID');
 }
 
 const modulesFolder = path.resolve(__dirname, 'modules');
 
 const dataFolder = process.env.DATA_FOLDER || 'data';
 
-const owners = process.env.OWNER ? process.env.OWNER.split(',') : '';
+const owners = process.env.OWNER ? process.env.OWNER.split(',') : [];
 
 const prefix = process.env.DEFAULT_PREFIX || '/';
 
-const debug = parseBoolean(process.env.DEBUG);
-
-const version = process.env.npm_package_version;
+const version = process.env.npm_package_version || '0.0.0';
 
 const permissions = new Set();
 
@@ -38,7 +35,6 @@ module.exports = {
     dataFolder,
     owners,
     prefix,
-    debug,
     version,
     isOwner,
     registerPermission,

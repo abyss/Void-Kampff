@@ -2,18 +2,18 @@
 
 const chalk = require('chalk');
 
+// Sane defaults
 const config = {
     error: true,
     log: true,
-    debug: true
+    debug: false
 };
 
-function init(conf) {
-    if (typeof conf !== 'object') conf = {};
+function init() {
+    const env = (process.env.NODE_ENV || 'development').toLowerCase();
 
-    if (conf.debug === false) config.debug = false;
-    if (conf.error === false) config.error = false;
-    if (conf.log === false) config.log = false;
+    if (env === 'development') config.debug = true;
+    if (env === 'test') config.log = false;
 }
 
 function debug(...output) {
