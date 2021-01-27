@@ -2,7 +2,13 @@ const { MessageEmbed } = require('discord.js');
 
 const { findModule } = require('../index');
 const { send } = require('../../../utils/chat');
-const { shuffleArray, asyncForEach } = require('../../../utils/general');
+const { shuffleArray } = require('../../../utils/general');
+
+const asyncForEach = async function asyncForEach(array, callback) {
+    for (let i = 0; i < array.length; i++) {
+        await callback(array[i], i, array);
+    }
+};
 
 exports.run = async (msg, args) => {
     const taskKeyColor = 'fef65b'; // Yellow
