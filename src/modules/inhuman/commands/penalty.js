@@ -21,8 +21,8 @@ exports.run = async (msg, args) => {
         if (!Array.isArray(customPenalties)) customPenalties = [];
     }
 
-    const penalties = ogPenalties.concat(customPenalties);
-    shuffleArray(penalties);
+    let penalties = ogPenalties.concat(customPenalties);
+    penalties = shuffleArray(penalties);
 
     const selected = penalties.slice(0, numPenalties);
 

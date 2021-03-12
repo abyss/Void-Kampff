@@ -24,7 +24,7 @@ exports.run = async (msg, args) => {
             return false;
         }
 
-        shuffleArray(modules);
+        modules = shuffleArray(modules);
 
         const selected = modules.slice(0, num);
         selected.forEach((module) => {

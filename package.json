@@ -18,13 +18,13 @@
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
     "fuse.js": "^6.4.6",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "lowdb": "^1.0.0",
     "moment": "^2.29.1",
     "moment-duration-format": "^2.3.2"
   },
   "devDependencies": {
-    "eslint": "^7.18.0",
+    "eslint": "^7.21.0",
     "jest": "^26.6.3"
   },
   "jest": {

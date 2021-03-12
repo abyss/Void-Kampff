@@ -26,8 +26,8 @@ exports.run = async (msg, args) => {
         if (!Array.isArray(customBackgrounds)) customBackgrounds = [];
     }
 
-    const backgrounds = ogBackgrounds.concat(customBackgrounds);
-    shuffleArray(backgrounds);
+    let backgrounds = ogBackgrounds.concat(customBackgrounds);
+    backgrounds = shuffleArray(backgrounds);
 
     const selected = backgrounds.slice(0, numBackgrounds);
 

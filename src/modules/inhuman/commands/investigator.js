@@ -34,8 +34,8 @@ exports.run = async (msg, args) => {
 
     await send(msg.author, taskKey);
 
-    const subjectPrompts = module.prompts;
-    shuffleArray(subjectPrompts);
+    let subjectPrompts = module.prompts;
+    subjectPrompts = shuffleArray(subjectPrompts);
 
     await asyncForEach(subjectPrompts, async (prompt) => {
         const examples = prompt.examples
